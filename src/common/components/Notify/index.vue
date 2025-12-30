@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import type { NotifyItem } from "./type"
 import { Bell } from "@element-plus/icons-vue"
+import { useI18n } from "vue-i18n"
 import { messageData, notifyData, todoData } from "./data"
 import List from "./List.vue"
 
-type TabName = "通知" | "消息" | "待办"
+const { t } = useI18n()
+
+type TabName = "notification" | "message" | "todo"
 
 interface DataItem {
   name: TabName
@@ -22,32 +25,32 @@ const badgeMax = 99
 const popoverWidth = 350
 
 /** 当前 Tab */
-const activeName = ref<TabName>("通知")
+const activeName = ref<TabName>("notification")
 
 /** 所有数据 */
 const data = ref<DataItem[]>([
   // 通知数据
   {
-    name: "通知",
+    name: "notification",
     type: "primary",
     list: notifyData
   },
   // 消息数据
   {
-    name: "消息",
+    name: "message",
     type: "danger",
     list: messageData
   },
   // 待办数据
   {
-    name: "待办",
+    name: "todo",
     type: "warning",
     list: todoData
   }
 ])
 
 function handleHistory() {
-  ElMessage.success(`跳转到${activeName.value}历史页面`)
+  ElMessage.success(t("notify.viewHistory", { type: t(`notify.${activeName.value}`) }))
 }
 </script>
 
@@ -56,7 +59,7 @@ function handleHistory() {
     <el-popover placement="bottom" :width="popoverWidth" trigger="click">
       <template #reference>
         <el-badge :value="badgeValue" :max="badgeMax" :hidden="badgeValue === 0">
-          <el-tooltip effect="dark" content="消息通知" placement="bottom">
+          <el-tooltip effect="dark" :content="t('notify.title')" placement="bottom">
             <el-icon :size="20">
               <Bell />
             </el-icon>
@@ -67,7 +70,7 @@ function handleHistory() {
         <el-tabs v-model="activeName" class="demo-tabs" stretch>
           <el-tab-pane v-for="(item, index) in data" :key="index" :name="item.name">
             <template #label>
-              {{ item.name }}
+              {{ t(`notify.${item.name}`) }}
               <el-badge :value="item.list.length" :max="badgeMax" :type="item.type" />
             </template>
             <el-scrollbar height="400px">
@@ -77,7 +80,7 @@ function handleHistory() {
         </el-tabs>
         <div class="notify-history">
           <el-button link @click="handleHistory">
-            查看{{ activeName }}历史
+            {{ t("notify.viewHistory", { type: t(`notify.${activeName}`) }) }}
           </el-button>
         </div>
       </template>

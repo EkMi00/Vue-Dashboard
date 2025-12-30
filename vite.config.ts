@@ -17,6 +17,8 @@ export default defineConfig(({ mode }) => {
   return {
     // 开发或打包构建时用到的公共基础路径
     base: VITE_PUBLIC_PATH,
+    // 指定缓存目录，避免 WSL 权限问题
+    cacheDir: "node_modules/.vite",
     resolve: {
       alias: {
         // @ 符号指向 src 目录
@@ -35,6 +37,11 @@ export default defineConfig(({ mode }) => {
       strictPort: false,
       // 是否自动打开浏览器
       open: true,
+      // 文件监听配置 - 解决 WSL 权限问题
+      watch: {
+        usePolling: true,
+        interval: 1000
+      },
       // 反向代理
       proxy: {
         "/api/v1": {

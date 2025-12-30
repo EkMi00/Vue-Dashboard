@@ -1,14 +1,16 @@
+import i18n from "@/i18n"
+
 function initStarNotification() {
   setTimeout(() => {
     ElNotification({
-      title: "为爱发电！",
+      title: i18n.global.t("panyNotifications.starTitle"),
       type: "success",
       message: h(
         "div",
         null,
         [
-          h("div", null, "所有源码均免费开源，如果对你有帮助，欢迎点个 Star 支持一下！"),
-          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite" }, "点击传送")
+          h("div", null, i18n.global.t("panyNotifications.starMessage")),
+          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite" }, i18n.global.t("panyNotifications.starLink"))
         ]
       ),
       duration: 0,
@@ -20,14 +22,14 @@ function initStarNotification() {
 function initStoreNotification() {
   setTimeout(() => {
     ElNotification({
-      title: "懒人服务？",
+      title: i18n.global.t("panyNotifications.storeTitle"),
       type: "warning",
       message: h(
         "div",
         null,
         [
-          h("div", null, "不想自己动手，但想移除 TS 或其他模块？也有懒人套餐！"),
-          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, "点击获取")
+          h("div", null, i18n.global.t("panyNotifications.storeMessage")),
+          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, i18n.global.t("panyNotifications.storeLink"))
         ]
       ),
       duration: 0,
@@ -39,14 +41,14 @@ function initStoreNotification() {
 function initMobileNotification() {
   setTimeout(() => {
     ElNotification({
-      title: "移动端",
+      title: i18n.global.t("panyNotifications.mobileTitle"),
       type: "primary",
       message: h(
         "div",
         null,
         [
-          h("div", null, "如果你有移动端 H5 需求，试试新的开源模板 MobVue！"),
-          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, "点击查看")
+          h("div", null, i18n.global.t("panyNotifications.mobileMessage")),
+          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, i18n.global.t("panyNotifications.mobileLink"))
         ]
       ),
       duration: 0,

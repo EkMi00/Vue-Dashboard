@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { useWatermark } from "@@/composables/useWatermark"
+import { useI18n } from "vue-i18n"
+
+const { t } = useI18n()
 
 const localRef = useTemplateRef("localRef")
 
@@ -11,34 +14,34 @@ const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark }
 <template>
   <div class="app-container">
     <el-alert
-      title="示例说明"
+      :title="t('watermark.exampleTitle')"
       type="primary"
-      description="通过调用 composable 开启或关闭水印，支持局部、全局、自定义样式（颜色、透明度、字体大小、字体、倾斜角度等），并自带防御（防删、防隐藏）和自适应功能"
+      :description="t('watermark.exampleDescription')"
       show-icon
     />
-    <el-card header="示例" shadow="never">
+    <el-card :header="t('watermark.exampleCard')" shadow="never">
       <div ref="localRef" class="local" />
       <template #footer>
         <el-button-group>
-          <el-button type="primary" @click="setWatermark('局部水印', { color: '#409eff' })">
-            创建局部水印
+          <el-button type="primary" @click="setWatermark(t('watermark.localWatermark'), { color: '#409eff' })">
+            {{ t("watermark.localWatermark") }}
           </el-button>
-          <el-button type="warning" @click="setWatermark('没有防御功能的局部水印', { color: '#e6a23c', defense: false })">
-            创建无防御局部水印
+          <el-button type="warning" @click="setWatermark(t('watermark.localWatermarkNoDefense'), { color: '#e6a23c', defense: false })">
+            {{ t("watermark.localWatermarkNoDefense") }}
           </el-button>
           <el-button type="danger" @click="clearWatermark">
-            清除局部水印
+            {{ t("watermark.clearLocal") }}
           </el-button>
         </el-button-group>
         <el-button-group>
-          <el-button type="primary" @click="setGlobalWatermark('全局水印', { color: '#409eff' })">
-            创建全局水印
+          <el-button type="primary" @click="setGlobalWatermark(t('watermark.globalWatermark'), { color: '#409eff' })">
+            {{ t("watermark.globalWatermark") }}
           </el-button>
-          <el-button type="warning" @click="setGlobalWatermark('没有防御功能的全局水印', { color: '#e6a23c', defense: false })">
-            创建无防御全局水印
+          <el-button type="warning" @click="setGlobalWatermark(t('watermark.globalWatermarkNoDefense'), { color: '#e6a23c', defense: false })">
+            {{ t("watermark.globalWatermarkNoDefense") }}
           </el-button>
           <el-button type="danger" @click="clearGlobalWatermark">
-            清除全局水印
+            {{ t("watermark.clearGlobal") }}
           </el-button>
         </el-button-group>
       </template>

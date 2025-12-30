@@ -3,9 +3,12 @@ import type { RouteRecordNameGeneric, RouteRecordRaw } from "vue-router"
 import { useDevice } from "@@/composables/useDevice"
 import { isExternal } from "@@/utils/validate"
 import { cloneDeep, debounce } from "lodash-es"
+import { useI18n } from "vue-i18n"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import Footer from "./Footer.vue"
 import Result from "./Result.vue"
+
+const { t } = useI18n()
 
 /** 控制 modal 显隐 */
 const modelValue = defineModel<boolean>({ required: true })
@@ -129,11 +132,11 @@ function handleEnter() {
   const name = activeRouteName.value
   const path = result.value.find(item => item.name === name)?.path
   if (path && isExternal(path)) return window.open(path, "_blank", "noopener, noreferrer")
-  if (!name) return ElMessage.warning("无法通过搜索进入该菜单，请为对应的路由设置唯一的 Name")
+  if (!name) return ElMessage.warning(t("messages.searchMenuNoName"))
   try {
     router.push({ name })
   } catch {
-    return ElMessage.warning("该菜单有必填的动态参数，无法通过搜索进入")
+    return ElMessage.warning(t("messages.searchMenuDynamicParams"))
   }
   handleClose()
 }

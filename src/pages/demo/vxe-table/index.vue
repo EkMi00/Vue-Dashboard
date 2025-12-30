@@ -3,11 +3,14 @@ import type { TableResponseData } from "@@/apis/tables/type"
 import type { ElMessageBoxOptions } from "element-plus"
 import type { VxeFormInstance, VxeFormProps, VxeGridInstance, VxeGridProps, VxeModalInstance, VxeModalProps } from "vxe-table"
 import { deleteTableDataApi, getTableDataApi } from "@@/apis/tables"
+import { useI18n } from "vue-i18n"
 
 defineOptions({
   // 命名当前组件
   name: "VxeTable"
 })
+
+const { t } = useI18n()
 
 // #region vxe-grid
 interface RowMeta {
@@ -326,7 +329,7 @@ const crudStore = reactive({
       const callback = () => {
         xFormOpt.loading = false
         xModalDom.value?.close()
-        ElMessage.success("操作成功")
+        ElMessage.success(t("messages.operationSuccess"))
         !crudStore.isUpdate && crudStore.afterInsert()
         crudStore.commitQuery()
       }
@@ -357,13 +360,13 @@ const crudStore = reactive({
       showClose: true,
       closeOnClickModal: true,
       closeOnPressEscape: true,
-      cancelButtonText: "取消",
-      confirmButtonText: "确定",
+      cancelButtonText: t("messages.cancel"),
+      confirmButtonText: t("messages.confirm"),
       dangerouslyUseHTMLString: true
     }
-    ElMessageBox.confirm(tip, "提示", config).then(() => {
+    ElMessageBox.confirm(tip, t("messages.prompt"), config).then(() => {
       deleteTableDataApi(row.id).then(() => {
-        ElMessage.success("删除成功")
+        ElMessage.success(t("messages.deleteSuccess"))
         crudStore.afterDelete()
         crudStore.commitQuery()
       })

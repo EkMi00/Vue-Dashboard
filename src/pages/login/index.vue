@@ -3,11 +3,14 @@ import type { FormRules } from "element-plus"
 import type { LoginRequestData } from "./apis/type"
 import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
 import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
+import { useI18n } from "vue-i18n"
 import { useSettingsStore } from "@/pinia/stores/settings"
 import { useUserStore } from "@/pinia/stores/user"
 import { getCaptchaApi, loginApi } from "./apis"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./composables/useFocus"
+
+const { t } = useI18n()
 
 const route = useRoute()
 
@@ -38,14 +41,14 @@ const loginFormData: LoginRequestData = reactive({
 /** 登录表单校验规则 */
 const loginFormRules: FormRules = {
   username: [
-    { required: true, message: "请输入用户名", trigger: "blur" }
+    { required: true, message: t("login.usernameRequired"), trigger: "blur" }
   ],
   password: [
-    { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 8, max: 16, message: "长度在 8 到 16 个字符", trigger: "blur" }
+    { required: true, message: t("login.passwordRequired"), trigger: "blur" },
+    { min: 8, max: 16, message: t("login.passwordLength"), trigger: "blur" }
   ],
   code: [
-    { required: true, message: "请输入验证码", trigger: "blur" }
+    { required: true, message: t("login.codeRequired"), trigger: "blur" }
   ]
 }
 
@@ -53,7 +56,7 @@ const loginFormRules: FormRules = {
 function handleLogin() {
   loginFormRef.value?.validate((valid) => {
     if (!valid) {
-      ElMessage.error("表单校验不通过")
+      ElMessage.error(t("login.validationFailed"))
       return
     }
     loading.value = true
@@ -98,7 +101,7 @@ createCode()
           <el-form-item prop="username">
             <el-input
               v-model.trim="loginFormData.username"
-              placeholder="用户名"
+              :placeholder="t('login.username')"
               type="text"
               tabindex="1"
               :prefix-icon="User"
@@ -108,7 +111,7 @@ createCode()
           <el-form-item prop="password">
             <el-input
               v-model.trim="loginFormData.password"
-              placeholder="密码"
+              :placeholder="t('login.password')"
               type="password"
               tabindex="2"
               :prefix-icon="Lock"
@@ -121,7 +124,7 @@ createCode()
           <el-form-item prop="code">
             <el-input
               v-model.trim="loginFormData.code"
-              placeholder="验证码"
+              :placeholder="t('login.code')"
               type="text"
               tabindex="3"
               :prefix-icon="Key"
@@ -147,7 +150,7 @@ createCode()
             </el-input>
           </el-form-item>
           <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">
-            登 录
+            {{ t("login.loginButton") }}
           </el-button>
         </el-form>
       </div>

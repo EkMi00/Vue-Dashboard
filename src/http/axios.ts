@@ -1,7 +1,9 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios"
 import { getToken } from "@@/utils/cache/cookies"
 import axios from "axios"
+import { ElMessage } from "element-plus"
 import { get, merge } from "lodash-es"
+import i18n from "@/i18n"
 import { useUserStore } from "@/pinia/stores/user"
 
 /** 退出登录并强制刷新页面（会重定向到登录页） */
@@ -33,8 +35,8 @@ function createInstance() {
       const code = apiData.code
       // 如果没有 code, 代表这不是项目后端开发的 api
       if (code === undefined) {
-        ElMessage.error("非本系统的接口")
-        return Promise.reject(new Error("非本系统的接口"))
+        ElMessage.error(i18n.global.t("messages.notSystemApi"))
+        return Promise.reject(new Error(i18n.global.t("messages.notSystemApi")))
       }
       switch (code) {
         case 0:

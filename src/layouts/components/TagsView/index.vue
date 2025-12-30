@@ -4,9 +4,12 @@ import type { TagView } from "@/pinia/stores/tags-view"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { Close } from "@element-plus/icons-vue"
 import path from "path-browserify"
+import { useI18n } from "vue-i18n"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import { useTagsViewStore } from "@/pinia/stores/tags-view"
 import ScrollPane from "./ScrollPane.vue"
+
+const { t } = useI18n()
 
 const router = useRouter()
 
@@ -179,7 +182,7 @@ listenerRouteChange((route) => {
         @click.middle="!isAffix(tag) && closeSelectedTag(tag)"
         @contextmenu.prevent="openMenu(tag, $event)"
       >
-        {{ tag.meta?.title }}
+        {{ t(`routes.${tag.meta?.title}`, tag.meta?.title || '') }}
         <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="closeSelectedTag(tag)">
           <Close />
         </el-icon>
@@ -187,16 +190,16 @@ listenerRouteChange((route) => {
     </ScrollPane>
     <ul v-show="visible" class="contextmenu" :style="{ left: `${left}px`, top: `${top}px` }">
       <li @click="refreshSelectedTag(selectedTag)">
-        刷新
+        {{ t("tagsView.refresh") }}
       </li>
       <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">
-        关闭
+        {{ t("tagsView.close") }}
       </li>
       <li @click="closeOthersTags">
-        关闭其它
+        {{ t("tagsView.closeOthers") }}
       </li>
       <li @click="closeAllTags(selectedTag)">
-        关闭所有
+        {{ t("tagsView.closeAll") }}
       </li>
     </ul>
   </div>

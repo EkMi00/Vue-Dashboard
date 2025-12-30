@@ -2,6 +2,9 @@
 import type { RouteLocationMatched } from "vue-router"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { compile } from "path-to-regexp"
+import { useI18n } from "vue-i18n"
+
+const { t } = useI18n()
 
 const route = useRoute()
 
@@ -41,10 +44,10 @@ listenerRouteChange((route) => {
   <el-breadcrumb>
     <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
       <span v-if="item.redirect === 'noRedirect' || index === breadcrumbs.length - 1" class="no-redirect">
-        {{ item.meta.title }}
+        {{ t(`routes.${item.meta.title}`, item.meta.title || '') }}
       </span>
       <a v-else @click.prevent="handleLink(item)">
-        {{ item.meta.title }}
+        {{ t(`routes.${item.meta.title}`, item.meta.title || '') }}
       </a>
     </el-breadcrumb-item>
   </el-breadcrumb>

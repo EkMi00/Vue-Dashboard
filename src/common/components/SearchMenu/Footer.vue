@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useDevice } from "@@/composables/useDevice"
+import { useI18n } from "vue-i18n"
 
 interface Props {
   total: number
@@ -8,6 +9,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const { isMobile } = useDevice()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -15,19 +17,19 @@ const { isMobile } = useDevice()
     <template v-if="!isMobile">
       <span class="search-footer-item">
         <SvgIcon name="keyboard-enter" class="svg-icon" />
-        <span>确认</span>
+        <span>{{ t("searchMenu.confirm") }}</span>
       </span>
       <span class="search-footer-item">
         <SvgIcon name="keyboard-up" class="svg-icon" />
         <SvgIcon name="keyboard-down" class="svg-icon" />
-        <span>切换</span>
+        <span>{{ t("searchMenu.switch") }}</span>
       </span>
       <span class="search-footer-item">
         <SvgIcon name="keyboard-esc" class="svg-icon" />
-        <span>关闭</span>
+        <span>{{ t("searchMenu.close") }}</span>
       </span>
     </template>
-    <span class="search-footer-total">共 {{ props.total }} 项</span>
+    <span class="search-footer-total">{{ t("searchMenu.total", { count: props.total }) }}</span>
   </div>
 </template>
 

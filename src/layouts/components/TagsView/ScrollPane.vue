@@ -3,13 +3,16 @@ import type { RouterLink } from "vue-router"
 import Screenfull from "@@/components/Screenfull/index.vue"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
+import { useI18n } from "vue-i18n"
 import { useSettingsStore } from "@/pinia/stores/settings"
+
+const props = defineProps<Props>()
+
+const { t } = useI18n()
 
 interface Props {
   tagRefs: InstanceType<typeof RouterLink>[] | null
 }
-
-const props = defineProps<Props>()
 
 const route = useRoute()
 
@@ -105,7 +108,7 @@ listenerRouteChange(() => {
 
 <template>
   <div class="scroll-container">
-    <el-tooltip content="向左滚动标签（超出最大宽度可点击）">
+    <el-tooltip :content="t('tagsView.scrollLeft')">
       <el-icon class="arrow left" @click="scrollTo('left')">
         <ArrowLeft />
       </el-icon>
@@ -115,7 +118,7 @@ listenerRouteChange(() => {
         <slot />
       </div>
     </el-scrollbar>
-    <el-tooltip content="向右滚动标签（超出最大宽度可点击）">
+    <el-tooltip :content="t('tagsView.scrollRight')">
       <el-icon class="arrow right" @click="scrollTo('right')">
         <ArrowRight />
       </el-icon>

@@ -56,7 +56,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/dashboard/index.vue"),
         name: "Dashboard",
         meta: {
-          title: "首页",
+          title: "dashboard",
           svgIcon: "dashboard",
           affix: true
         }
@@ -69,7 +69,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/demo/unocss",
     name: "Demo",
     meta: {
-      title: "示例集合",
+      title: "demo",
       elIcon: "DataBoard"
     },
     children: [
@@ -78,7 +78,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/unocss/index.vue"),
         name: "UnoCSS",
         meta: {
-          title: "UnoCSS"
+          title: "unocss"
         }
       },
       {
@@ -86,7 +86,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/element-plus/index.vue"),
         name: "ElementPlus",
         meta: {
-          title: "Element Plus",
+          title: "elementPlus",
           keepAlive: true
         }
       },
@@ -95,7 +95,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/vxe-table/index.vue"),
         name: "VxeTable",
         meta: {
-          title: "Vxe Table",
+          title: "vxeTable",
           keepAlive: true
         }
       },
@@ -105,7 +105,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         redirect: "/demo/level2/level3",
         name: "Level2",
         meta: {
-          title: "二级路由",
+          title: "level2",
           alwaysShow: true
         },
         children: [
@@ -114,7 +114,7 @@ export const constantRoutes: RouteRecordRaw[] = [
             component: () => import("@/pages/demo/level2/level3/index.vue"),
             name: "Level3",
             meta: {
-              title: "三级路由",
+              title: "level3",
               keepAlive: true
             }
           }
@@ -125,7 +125,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         redirect: "/demo/composable-demo/use-fetch-select",
         name: "ComposableDemo",
         meta: {
-          title: "组合式函数"
+          title: "composableDemo"
         },
         children: [
           {
@@ -159,7 +159,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/link",
     meta: {
-      title: "文档链接",
+      title: "link",
       elIcon: "Link"
     },
     children: [
@@ -168,7 +168,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => {},
         name: "Link1",
         meta: {
-          title: "中文文档"
+          title: "chineseDoc"
         }
       },
       {
@@ -176,7 +176,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => {},
         name: "Link2",
         meta: {
-          title: "新手教程"
+          title: "tutorialDoc"
         }
       }
     ]
@@ -195,7 +195,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: "/permission/page-level",
     name: "Permission",
     meta: {
-      title: "权限演示",
+      title: "permission",
       elIcon: "Lock",
       // 可以在根路由中设置角色
       roles: ["admin", "editor"],
@@ -207,7 +207,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/permission/page-level.vue"),
         name: "PermissionPageLevel",
         meta: {
-          title: "页面级",
+          title: "pageLevel",
           // 或者在子路由中设置角色
           roles: ["admin"]
         }
@@ -217,7 +217,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/permission/button-level.vue"),
         name: "PermissionButtonLevel",
         meta: {
-          title: "按钮级",
+          title: "buttonLevel",
           // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
           roles: undefined
         }

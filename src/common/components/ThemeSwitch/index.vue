@@ -1,14 +1,26 @@
 <script lang="ts" setup>
+import type { ThemeName } from "@@/composables/useTheme"
 import { useTheme } from "@@/composables/useTheme"
 import { MagicStick } from "@element-plus/icons-vue"
+import { useI18n } from "vue-i18n"
 
+const { t } = useI18n()
 const { themeList, activeThemeName, setTheme } = useTheme()
+
+function getThemeTitle(themeName: ThemeName) {
+  const themeMap: Record<ThemeName, string> = {
+    "normal": t("theme.default"),
+    "dark": t("theme.dark"),
+    "dark-blue": t("theme.darkBlue")
+  }
+  return themeMap[themeName] || themeName
+}
 </script>
 
 <template>
   <el-dropdown trigger="click">
     <div>
-      <el-tooltip effect="dark" content="主题模式" placement="bottom">
+      <el-tooltip effect="dark" :content="t('theme.mode')" placement="bottom">
         <el-icon :size="20">
           <MagicStick />
         </el-icon>
@@ -22,7 +34,7 @@ const { themeList, activeThemeName, setTheme } = useTheme()
           :disabled="activeThemeName === theme.name"
           @click="(e: MouseEvent) => setTheme(e, theme.name)"
         >
-          <span>{{ theme.title }}</span>
+          <span>{{ getThemeTitle(theme.name) }}</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>

@@ -5,11 +5,14 @@ import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDat
 import { usePagination } from "@@/composables/usePagination"
 import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@element-plus/icons-vue"
 import { cloneDeep } from "lodash-es"
+import { useI18n } from "vue-i18n"
 
 defineOptions({
   // 命名当前组件
   name: "ElementPlus"
 })
+
+const { t } = useI18n()
 
 const loading = ref<boolean>(false)
 
@@ -36,13 +39,13 @@ const formRules: FormRules<CreateOrUpdateTableRequestData> = {
 function handleCreateOrUpdate() {
   formRef.value?.validate((valid) => {
     if (!valid) {
-      ElMessage.error("表单校验不通过")
+      ElMessage.error(t("messages.formValidationFailed"))
       return
     }
     loading.value = true
     const api = formData.value.id === undefined ? createTableDataApi : updateTableDataApi
     api(formData.value).then(() => {
-      ElMessage.success("操作成功")
+      ElMessage.success(t("messages.operationSuccess"))
       dialogVisible.value = false
       getTableData()
     }).finally(() => {
@@ -59,13 +62,13 @@ function resetForm() {
 
 // #region 删
 function handleDelete(row: TableData) {
-  ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
+  ElMessageBox.confirm(t("messages.deleteUserConfirm", { username: row.username }), t("messages.prompt"), {
+    confirmButtonText: t("messages.confirm"),
+    cancelButtonText: t("messages.cancel"),
     type: "warning"
   }).then(() => {
     deleteTableDataApi(row.id).then(() => {
-      ElMessage.success("删除成功")
+      ElMessage.success(t("messages.deleteSuccess"))
       getTableData()
     })
   })

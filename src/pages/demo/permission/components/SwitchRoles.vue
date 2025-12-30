@@ -1,5 +1,8 @@
 <script lang="ts" setup>
+import { useI18n } from "vue-i18n"
 import { useUserStore } from "@/pinia/stores/user"
+
+const { t } = useI18n()
 
 const userStore = useUserStore()
 
@@ -13,13 +16,13 @@ watch(switchRoles, (value) => {
 <template>
   <el-card shadow="never">
     <div>
-      <span>你的角色：</span>
+      <span>{{ t("switchRoles.yourRole") }}</span>
       <el-tag v-for="(role, index) in userStore.roles" :key="index" effect="plain" size="large">
         {{ role }}
       </el-tag>
     </div>
     <div class="switch-roles">
-      <span>切换用户：</span>
+      <span>{{ t("switchRoles.switchUser") }}</span>
       <el-radio-group v-model="switchRoles">
         <el-radio-button label="editor" value="editor" />
         <el-radio-button label="admin" value="admin" />
