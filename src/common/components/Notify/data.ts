@@ -1,58 +1,61 @@
 import type { NotifyItem } from "./type"
+import i18n from "@/i18n"
+
+const t = i18n.global.t
 
 export const notifyData: NotifyItem[] = [
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
-    title: "V3 Admin Vite 上线啦",
-    datetime: "两年前",
-    description: "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术"
+    title: t("notifyData.v3ViteLaunch"),
+    datetime: t("notifyData.twoYearsAgo"),
+    description: t("notifyData.v3ViteDesc")
   },
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
-    title: "V3 Admin 上线啦",
-    datetime: "三年前",
-    description: "一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus 和 Pinia"
+    title: t("notifyData.v3Launch"),
+    datetime: t("notifyData.threeYearsAgo"),
+    description: t("notifyData.v3Desc")
   }
 ]
 
 export const messageData: NotifyItem[] = [
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png",
-    title: "来自楚门的世界",
-    description: "如果再也不能见到你，祝你早安、午安和晚安",
+    title: t("messageData.trumanShow"),
+    description: t("messageData.trumanQuote"),
     datetime: "1998-06-05"
   },
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png",
-    title: "来自大话西游",
-    description: "如果非要在这份爱上加上一个期限，我希望是一万年",
+    title: t("messageData.chineseOdyssey"),
+    description: t("messageData.odysseyQuote"),
     datetime: "1995-02-04"
   },
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png",
-    title: "来自龙猫",
-    description: "心存善意，定能途遇天使",
+    title: t("messageData.totoro"),
+    description: t("messageData.totoroQuote"),
     datetime: "1988-04-16"
   }
 ]
 
 export const todoData: NotifyItem[] = [
   {
-    title: "任务名称",
-    description: "这家伙很懒，什么都没留下",
-    extra: "未开始",
+    title: t("todoData.taskName"),
+    description: t("todoData.lazyMessage"),
+    extra: t("todoData.notStarted"),
     status: "info"
   },
   {
-    title: "任务名称",
-    description: "这家伙很懒，什么都没留下",
-    extra: "进行中",
+    title: t("todoData.taskName"),
+    description: t("todoData.lazyMessage"),
+    extra: t("todoData.inProgress"),
     status: "primary"
   },
   {
-    title: "任务名称",
-    description: "这家伙很懒，什么都没留下",
-    extra: "已超时",
+    title: t("todoData.taskName"),
+    description: t("todoData.lazyMessage"),
+    extra: t("todoData.overdue"),
     status: "danger"
   }
 ]

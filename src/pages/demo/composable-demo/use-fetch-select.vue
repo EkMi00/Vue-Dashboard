@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { useFetchSelect } from "@@/composables/useFetchSelect"
+import { useI18n } from "vue-i18n"
 import { getSelectDataApi } from "./apis/use-fetch-select"
+
+const { t } = useI18n()
 
 const { loading, options, value } = useFetchSelect({
   api: getSelectDataApi
@@ -10,18 +13,18 @@ const { loading, options, value } = useFetchSelect({
 <template>
   <div class="app-container">
     <el-alert
-      title="示例说明"
+      :title="t('useFetchSelect.exampleTitle')"
       type="primary"
-      description="通过 composable 自动调用 api 后拿到 Select 组件需要的数据并传递给 Select 组件"
+      :description="t('useFetchSelect.description')"
       show-icon
     />
-    <el-card header="Select 示例" shadow="never" v-loading="loading">
+    <el-card :header="t('useFetchSelect.selectExample')" shadow="never" v-loading="loading">
       <el-select v-model="value" filterable>
-        <el-option v-for="(item, index) in options" v-bind="item" :key="index" placeholder="请选择" />
+        <el-option v-for="(item, index) in options" v-bind="item" :key="index" :placeholder="t('useFetchSelect.placeholder')" />
       </el-select>
     </el-card>
-    <el-card header="Select V2 示例（如果数据量过多，可以选择该组件）" shadow="never" v-loading="loading">
-      <el-select-v2 v-model="value" :options="options" filterable placeholder="请选择" />
+    <el-card :header="t('useFetchSelect.selectV2Example')" shadow="never" v-loading="loading">
+      <el-select-v2 v-model="value" :options="options" filterable :placeholder="t('useFetchSelect.placeholder')" />
     </el-card>
   </div>
 </template>

@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { useFullscreenLoading } from "@@/composables/useFullscreenLoading"
+import { useI18n } from "vue-i18n"
 import { getErrorApi, getSuccessApi } from "./apis/use-fullscreen-loading"
+
+const { t } = useI18n()
 
 const svg = `
   <path class="path" d="
@@ -13,24 +16,24 @@ const svg = `
   " style="stroke-width: 4px; fill: rgba(0, 0, 0, 0)"/>
 `
 
-const options = {
-  text: "即将发生错误...",
+const options = computed(() => ({
+  text: t("useFullscreenLoading.errorPending"),
   background: "#F56C6C20",
   svg,
   svgViewBox: "-10, -10, 50, 50"
-}
+}))
 
 async function querySuccess() {
   // 注意：
   // 1. getSuccessApi 是一个函数而非函数调用
   // 2. 如需给 getSuccessApi 函数传递参数，请在后面的括号中进行（真正的 getSuccessApi 调用）
   const res = await useFullscreenLoading(getSuccessApi)([1, 2, 3])
-  ElMessage.success(`${res.message}，传参为 ${res.data.list.toString()}`)
+  ElMessage.success(t("useFullscreenLoading.successMessage", { message: res.message, params: res.data.list.toString() }))
 }
 
 async function queryError() {
   try {
-    await useFullscreenLoading(getErrorApi, options)()
+    await useFullscreenLoading(getErrorApi, options.value)()
   } catch (error) {
     ElMessage.error((error as Error).message)
   }
@@ -40,17 +43,17 @@ async function queryError() {
 <template>
   <div class="app-container">
     <el-alert
-      title="示例说明"
+      :title="t('useFullscreenLoading.exampleTitle')"
       type="primary"
-      description="通过将要执行的函数传递给 composable，让 composable 自动开启全屏 loading，函数执行结束后自动关闭 loading"
+      :description="t('useFullscreenLoading.description')"
       show-icon
     />
-    <el-card header="示例" shadow="never">
+    <el-card :header="t('useFullscreenLoading.exampleCard')" shadow="never">
       <el-button type="primary" @click="querySuccess">
-        查询成功
+        {{ t("useFullscreenLoading.querySuccess") }}
       </el-button>
       <el-button type="danger" @click="queryError">
-        查询失败
+        {{ t("useFullscreenLoading.queryError") }}
       </el-button>
     </el-card>
   </div>

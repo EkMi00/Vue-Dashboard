@@ -1,8 +1,14 @@
+<script lang="ts" setup>
+import { useI18n } from "vue-i18n"
+
+const { t } = useI18n()
+</script>
+
 <template>
   <div class="app-container">
     <h4>
       <span>
-        三级及其以上路由缓存功能默认关闭，需要请前往此配置文件中打开：
+        {{ t("level2.cacheNote") }}
       </span>
       <el-link
         type="primary"
@@ -12,7 +18,7 @@
         src/router/config.ts
       </el-link>
     </h4>
-    <el-card header="二级路由">
+    <el-card :header="t('level2.cardHeader')">
       <router-view />
     </el-card>
   </div>

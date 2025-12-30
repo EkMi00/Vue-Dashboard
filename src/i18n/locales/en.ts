@@ -16,7 +16,10 @@ export default {
     confirm: "Confirm",
     switch: "Switch",
     close: "Close",
-    total: "Total {count} items"
+    total: "Total {count} items",
+    placeholder: "Search menu",
+    noResult: "No search results",
+    tooltip: "Search menu"
   },
   notify: {
     title: "Notifications",
@@ -132,5 +135,52 @@ export default {
     mobileTitle: "Mobile",
     mobileMessage: "If you have mobile H5 needs, try the new open source template MobVue!",
     mobileLink: "Click to view"
+  },
+  notifyData: {
+    v3ViteLaunch: "V3 Admin Vite is Live!",
+    twoYearsAgo: "Two years ago",
+    v3ViteDesc: "A free open-source management system solution based on Vue3, TypeScript, Element Plus, Pinia, and Vite",
+    v3Launch: "V3 Admin is Live!",
+    threeYearsAgo: "Three years ago",
+    v3Desc: "A management system solution based on Vue3, TypeScript, Element Plus, and Pinia"
+  },
+  messageData: {
+    trumanShow: "From The Truman Show",
+    trumanQuote: "In case I don't see you, good morning, good afternoon, and good night",
+    chineseOdyssey: "From A Chinese Odyssey",
+    odysseyQuote: "If I have to add a time limit to this love, I hope it's ten thousand years",
+    totoro: "From My Neighbor Totoro",
+    totoroQuote: "When you keep a kind heart, you will surely meet your angel"
+  },
+  todoData: {
+    taskName: "Task Name",
+    lazyMessage: "This person is lazy and left nothing",
+    notStarted: "Not Started",
+    inProgress: "In Progress",
+    overdue: "Overdue"
+  },
+  level2: {
+    cacheNote: "Route caching for level 3 and above is disabled by default. To enable it, please go to this config file:",
+    cardHeader: "Level 2 Route"
+  },
+  level3: {
+    cardHeader: "Level 3 Route",
+    inputPlaceholder: "Enter any characters to test cache"
+  },
+  useFetchSelect: {
+    exampleTitle: "Example Description",
+    description: "Automatically call API through composable to get data needed by Select component and pass it to Select component",
+    selectExample: "Select Example",
+    selectV2Example: "Select V2 Example (Choose this component if data volume is large)",
+    placeholder: "Please select"
+  },
+  useFullscreenLoading: {
+    exampleTitle: "Example Description",
+    description: "Pass the function to be executed to composable, let composable automatically enable fullscreen loading, and automatically close loading after function execution",
+    exampleCard: "Example",
+    querySuccess: "Query Success",
+    queryError: "Query Error",
+    errorPending: "Error about to occur...",
+    successMessage: "{message}, parameters: {params}"
   }
 }

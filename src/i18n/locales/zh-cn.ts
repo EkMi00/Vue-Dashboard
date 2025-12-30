@@ -16,7 +16,10 @@ export default {
     confirm: "确认",
     switch: "切换",
     close: "关闭",
-    total: "共 {count} 项"
+    total: "共 {count} 项",
+    placeholder: "搜索菜单",
+    noResult: "暂无搜索结果",
+    tooltip: "搜索菜单"
   },
   notify: {
     title: "消息通知",
@@ -132,5 +135,52 @@ export default {
     mobileTitle: "移动端",
     mobileMessage: "如果你有移动端 H5 需求，试试新的开源模板 MobVue！",
     mobileLink: "点击查看"
+  },
+  notifyData: {
+    v3ViteLaunch: "V3 Admin Vite 上线啦",
+    twoYearsAgo: "两年前",
+    v3ViteDesc: "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术",
+    v3Launch: "V3 Admin 上线啦",
+    threeYearsAgo: "三年前",
+    v3Desc: "一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus 和 Pinia"
+  },
+  messageData: {
+    trumanShow: "来自楚门的世界",
+    trumanQuote: "如果再也不能见到你，祝你早安、午安和晚安",
+    chineseOdyssey: "来自大话西游",
+    odysseyQuote: "如果非要在这份爱上加上一个期限，我希望是一万年",
+    totoro: "来自龙猫",
+    totoroQuote: "心存善意，定能途遇天使"
+  },
+  todoData: {
+    taskName: "任务名称",
+    lazyMessage: "这家伙很懒，什么都没留下",
+    notStarted: "未开始",
+    inProgress: "进行中",
+    overdue: "已超时"
+  },
+  level2: {
+    cacheNote: "三级及其以上路由缓存功能默认关闭，需要请前往此配置文件中打开：",
+    cardHeader: "二级路由"
+  },
+  level3: {
+    cardHeader: "三级路由",
+    inputPlaceholder: "输入任意字符测试缓存"
+  },
+  useFetchSelect: {
+    exampleTitle: "示例说明",
+    description: "通过 composable 自动调用 api 后拿到 Select 组件需要的数据并传递给 Select 组件",
+    selectExample: "Select 示例",
+    selectV2Example: "Select V2 示例（如果数据量过多，可以选择该组件）",
+    placeholder: "请选择"
+  },
+  useFullscreenLoading: {
+    exampleTitle: "示例说明",
+    description: "通过将要执行的函数传递给 composable，让 composable 自动开启全屏 loading，函数执行结束后自动关闭 loading",
+    exampleCard: "示例",
+    querySuccess: "查询成功",
+    queryError: "查询失败",
+    errorPending: "即将发生错误...",
+    successMessage: "{message}，传参为 {params}"
   }
 }
